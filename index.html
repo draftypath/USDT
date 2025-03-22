@@ -22,6 +22,18 @@
             position: relative;
         }
         
+        /* Border container */
+        .border-container {
+            position: relative;
+            width: 1300px;
+            height: 770px;
+            border: 10px solid #5a3b1f;
+            background: #1a0f07;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            z-index: 5;
+        }
+        
         /* Grain Effect - Using pseudo-element */
         body::before {
             content: '';
@@ -56,7 +68,7 @@
             width: 900px;
             height: 600px;
             perspective: 2000px;
-            margin: 20px;
+            margin: 70px auto 20px auto; /* Changed from 20px auto to 70px auto 20px auto to lower the book by 50px */
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
             z-index: 10;
         }
@@ -284,8 +296,8 @@
         .torch-video-right {
             position: absolute;
             top: 50%;
-            right: -195px;
-            width: 175px;
+            right: -175px;
+            width: 150px;
             height: auto;
             transform: translateY(-50%);
             z-index: 15;
@@ -294,8 +306,8 @@
         .torch-video-left {
             position: absolute;
             top: 50%;
-            left: -195px;
-            width: 175px;
+            left: -175px;
+            width: 150px;
             height: auto;
             transform: translateY(-50%);
             z-index: 15;
@@ -325,8 +337,8 @@
         
         .music-control {
             position: absolute;
-            top: calc(50% - 318px);
-            right: -220px;
+            top: 20px;
+            right: 20px;
             background: #362313;
             color: #6e4c2c;
             width: 40px;
@@ -361,10 +373,17 @@
         }
         
         /* Responsive design */
-        @media (max-width: 900px) {
-            .book-container {
+        @media (max-width: 1000px) {
+            .border-container {
                 width: 100%;
+                height: auto;
+                min-height: 600px;
+            }
+            
+            .book-container {
+                width: 90%;
                 height: 500px;
+                margin: 60px auto 10px auto; /* Adjusted for responsive design, lowering by ~50px */
             }
             
             .page-content {
@@ -409,12 +428,12 @@
             
             .torch-video-right {
                 width: 100px;
-                right: -110px;
+                right: -100px;
             }
             
             .torch-video-left {
                 width: 100px;
-                left: -110px;
+                left: -100px;
             }
             
             .home-button {
@@ -425,6 +444,8 @@
             }
             
             .music-control {
+                top: 10px;
+                right: 10px;
                 width: 30px;
                 height: 30px;
                 font-size: 1.2em;
@@ -433,153 +454,155 @@
     </style>
 </head>
 <body>
-    <div class="book-container">
-        <div class="book">
-            <!-- Cover Page -->
-            <div class="page cover" data-page="0">
-                <div class="front">
-                    <img src="USDT.png" alt="USDTittiesCoin Title">
-                    <h1>USD-Titties Coin</h1>
-                    <div class="cover-links">
-                        <a href="https://your-buy-link-here.com" class="buy-button" target="_blank">Collect Now</a>
-                        <a href="https://x.com/your-profile" class="x-link" target="_blank">X</a>
+    <div class="border-container">
+        <div class="book-container">
+            <div class="book">
+                <!-- Cover Page -->
+                <div class="page cover" data-page="0">
+                    <div class="front">
+                        <img src="USDT.png" alt="USDTittiesCoin Title">
+                        <h1>USD-Titties Coin</h1>
+                        <div class="cover-links">
+                            <a href="https://your-buy-link-here.com" class="buy-button" target="_blank">Collect Now</a>
+                            <a href="https://x.com/your-profile" class="x-link" target="_blank">X</a>
+                        </div>
                     </div>
+                    <div class="back"></div>
                 </div>
-                <div class="back"></div>
+                
+                <!-- Story Pages -->
+                <div class="page" data-page="1">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p><strong></strong><br>
+                            Long ago, the Middle and Underrealms were in turmoil. Kingdoms crumbled under the weight of greed and treachery. The lands above were ruled by endless cycles of fortune and ruin, while the deep places below were no better—filled with rogue lords, false prophets of wealth, and endless war over fading treasures. Stability was a distant dream, and no wealth was safe.</p>
+                            <img src="photo1.png" alt="Chaos in the Realms">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="2">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>In the darkest of times, the Forgers of Mammaria, a secret order hidden beneath the mighty Twin Peaks of Plenty, took action. From the molten depths of The Eternal Vault, they crafted a relic of true balance—USDTittiesCoin. It was unyielding, immune to corruption, and its power brought prosperity to all who held it.</p>
+                            <img src="photo2.png" alt="The Forgers of Mammaria">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="3">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>The once-ruined kingdoms flourished. In Titshire, the Cleavagi celebrated a new golden age, and the legendary huzz—renowned for their bountiful gifts of nature—became symbols of abundance and joy.</p>
+                            <img src="photo3.png" alt="The Golden Age in Titshire">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="4">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>But peace never lasts. Deep within the Penny Pits, Lord Flatchest watched in seething jealousy. He despised what he could not control, and in his wrath, he forged an alliance with the Ravagers of Hollow Vale.</p>
+                            <img src="photo4.png" alt="Lord Flatchest's Jealousy">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="5">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>Together, they launched the Great Sundering, a war upon stability itself. Gold lost its worth, treasures turned to dust, and all was thrown into chaos once more.</p>
+                            <img src="photo5.png" alt="The Great Sundering">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="6">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>With the world on the brink of ruin, the last of the Cleavagi hid the final USDTittiesCoin deep underground, far from the grasp of those who sought to destroy it. The golden age had ended, and the coin was lost to time.</p>
+                            <img src="photo6.png" alt="Hiding the USDTittiesCoin">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="7">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p><strong></strong><br>
+                            With the first USDTittiesCoin buried, chaos returned to the realms. The Middle Lands saw countless wars over wealth, and the underrealm fractured into warring factions, each fighting to control what was left. The once-mighty Cleavagi vanished, their great cities falling into dust. Even the legendary Twin Peaks of Plenty became nothing more than a forgotten myth.</p>
+                            <img src="photo7.png" alt="Chaos Returns">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="8">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>But some still whispered of the coin, of the true balance it once brought. Legends told of a time when it would rise again, in the hands of one bold enough to wield its power. For centuries, the world waited. Until, one day, fate intervened.</p>
+                            <img src="photo8.png" alt="Whispers of the Coin">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="9">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>In 2025, the world once again lay in ruin, gripped by an unrelenting financial collapse. Markets crumbled, fortunes vanished overnight, and once-mighty empires were left in shattered ruin. Hope was fading, buried beneath a mountain of losses.</p>
+                            <img src="photo9.png" alt="Financial Collapse of 2025">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="10">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>Then came Busty McHodl. Digging through the depths of a forgotten vault beneath Wall Street, she uncovered the golden relic of legend. Its glow was as pure as the day it was forged, untouched by time, its stability unbroken. The whispers were true. USDTittiesCoin had returned.</p>
+                            <img src="photo10.png" alt="Busty McHodl's Discovery">
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
+                <div class="page" data-page="11">
+                    <div class="front">
+                        <div class="page-content section">
+                            <p>As news spread, the financial world trembled. The lost currency of the Cleavagi had risen once more, a symbol of unshakable value in an era of uncertainty. The people, desperate for salvation, rallied behind the coin. But in the shadows, forces of deception stirred once more, eager to destroy it. The battle for financial freedom had begun again. And this time, the coin would not be lost.</p>
+                            <img src="photo11.png" alt="The Battle for Financial Freedom">
+                            <button id="home-button" class="home-button">Home</button>
+                        </div>
+                    </div>
+                    <div class="back"></div>
+                </div>
             </div>
             
-            <!-- Story Pages -->
-            <div class="page" data-page="1">
-                <div class="front">
-                    <div class="page-content section">
-                        <p><strong></strong><br>
-                        Long ago, the Middle and Underrealms were in turmoil. Kingdoms crumbled under the weight of greed and treachery. The lands above were ruled by endless cycles of fortune and ruin, while the deep places below were no better—filled with rogue lords, false prophets of wealth, and endless war over fading treasures. Stability was a distant dream, and no wealth was safe.</p>
-                        <img src="photo1.png" alt="Chaos in the Realms">
-                    </div>
-                </div>
-                <div class="back"></div>
+            <!-- Navigation buttons -->
+            <div class="nav-buttons">
+                <button id="prev-page">←</button>
+                <button id="next-page">→</button>
             </div>
-            <div class="page" data-page="2">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>In the darkest of times, the Forgers of Mammaria, a secret order hidden beneath the mighty Twin Peaks of Plenty, took action. From the molten depths of The Eternal Vault, they crafted a relic of true balance—USDTittiesCoin. It was unyielding, immune to corruption, and its power brought prosperity to all who held it.</p>
-                        <img src="photo2.png" alt="The Forgers of Mammaria">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="3">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>The once-ruined kingdoms flourished. In Titshire, the Cleavagi celebrated a new golden age, and the legendary huzz—renowned for their bountiful gifts of nature—became symbols of abundance and joy.</p>
-                        <img src="photo3.png" alt="The Golden Age in Titshire">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="4">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>But peace never lasts. Deep within the Penny Pits, Lord Flatchest watched in seething jealousy. He despised what he could not control, and in his wrath, he forged an alliance with the Ravagers of Hollow Vale.</p>
-                        <img src="photo4.png" alt="Lord Flatchest's Jealousy">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="5">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>Together, they launched the Great Sundering, a war upon stability itself. Gold lost its worth, treasures turned to dust, and all was thrown into chaos once more.</p>
-                        <img src="photo5.png" alt="The Great Sundering">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="6">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>With the world on the brink of ruin, the last of the Cleavagi hid the final USDTittiesCoin deep underground, far from the grasp of those who sought to destroy it. The golden age had ended, and the coin was lost to time.</p>
-                        <img src="photo6.png" alt="Hiding the USDTittiesCoin">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="7">
-                <div class="front">
-                    <div class="page-content section">
-                        <p><strong></strong><br>
-                        With the first USDTittiesCoin buried, chaos returned to the realms. The Middle Lands saw countless wars over wealth, and the underrealm fractured into warring factions, each fighting to control what was left. The once-mighty Cleavagi vanished, their great cities falling into dust. Even the legendary Twin Peaks of Plenty became nothing more than a forgotten myth.</p>
-                        <img src="photo7.png" alt="Chaos Returns">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="8">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>But some still whispered of the coin, of the true balance it once brought. Legends told of a time when it would rise again, in the hands of one bold enough to wield its power. For centuries, the world waited. Until, one day, fate intervened.</p>
-                        <img src="photo8.png" alt="Whispers of the Coin">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="9">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>In 2025, the world once again lay in ruin, gripped by an unrelenting financial collapse. Markets crumbled, fortunes vanished overnight, and once-mighty empires were left in shattered ruin. Hope was fading, buried beneath a mountain of losses.</p>
-                        <img src="photo9.png" alt="Financial Collapse of 2025">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="10">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>Then came Busty McHodl. Digging through the depths of a forgotten vault beneath Wall Street, she uncovered the golden relic of legend. Its glow was as pure as the day it was forged, untouched by time, its stability unbroken. The whispers were true. USDTittiesCoin had returned.</p>
-                        <img src="photo10.png" alt="Busty McHodl's Discovery">
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
-            <div class="page" data-page="11">
-                <div class="front">
-                    <div class="page-content section">
-                        <p>As news spread, the financial world trembled. The lost currency of the Cleavagi had risen once more, a symbol of unshakable value in an era of uncertainty. The people, desperate for salvation, rallied behind the coin. But in the shadows, forces of deception stirred once more, eager to destroy it. The battle for financial freedom had begun again. And this time, the coin would not be lost.</p>
-                        <img src="photo11.png" alt="The Battle for Financial Freedom">
-                        <button id="home-button" class="home-button">Home</button>
-                    </div>
-                </div>
-                <div class="back"></div>
-            </div>
+            
+            <!-- Torch videos -->
+            <video class="torch-video-right" autoplay muted loop playsinline>
+                <source src="torch.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video class="torch-video-left" autoplay muted loop playsinline>
+                <source src="torch.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Music control button -->
+            <button id="music-control" class="music-control">▶</button>
+            
+            <!-- Audio element -->
+            <audio id="background-music" loop>
+                <source src="music.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            
+            <!-- Invisible click catcher -->
+            <div id="click-catcher"></div>
         </div>
-        
-        <!-- Navigation buttons -->
-        <div class="nav-buttons">
-            <button id="prev-page">←</button>
-            <button id="next-page">→</button>
-        </div>
-        
-        <!-- Torch videos -->
-        <video class="torch-video-right" autoplay muted loop playsinline>
-            <source src="torch.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video class="torch-video-left" autoplay muted loop playsinline>
-            <source src="torch.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
-        <!-- Music control button -->
-        <button id="music-control" class="music-control">▶</button>
-        
-        <!-- Audio element -->
-        <audio id="background-music" loop>
-            <source src="music.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-        
-        <!-- Invisible click catcher -->
-        <div id="click-catcher"></div>
     </div>
 
     <script>
