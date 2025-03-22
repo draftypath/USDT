@@ -94,7 +94,7 @@
             border: 2px solid #8b5e34;
             overflow: hidden;
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), 
-                               linear-gradient(to bottom, #f4e4bc, #e6d5a8);
+                             linear-gradient(to bottom, #f4e4bc, #e6d5a8);
         }
         
         .page .front { 
@@ -323,6 +323,43 @@
             transform: scale(1.1);
         }
         
+        .music-control {
+            position: absolute;
+            top: calc(50% - 318px);
+            right: -220px;
+            background: #362313;
+            color: #6e4c2c;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: 2px solid #5f4023;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+        
+        .music-control:hover {
+            background: #39230e;
+            color: #826236;
+            transform: scale(1.1);
+        }
+        
+        /* Invisible click catcher */
+        #click-catcher {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            background: transparent;
+        }
+        
         /* Responsive design */
         @media (max-width: 900px) {
             .book-container {
@@ -386,6 +423,12 @@
                 padding: 8px 16px;
                 font-size: 1em;
             }
+            
+            .music-control {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -409,7 +452,7 @@
             <div class="page" data-page="1">
                 <div class="front">
                     <div class="page-content section">
-                        <p><strong>The Age of Chaos</strong><br>
+                        <p><strong></strong><br>
                         Long ago, the Middle and Underrealms were in turmoil. Kingdoms crumbled under the weight of greed and treachery. The lands above were ruled by endless cycles of fortune and ruin, while the deep places below were no better—filled with rogue lords, false prophets of wealth, and endless war over fading treasures. Stability was a distant dream, and no wealth was safe.</p>
                         <img src="photo1.png" alt="Chaos in the Realms">
                     </div>
@@ -464,7 +507,7 @@
             <div class="page" data-page="7">
                 <div class="front">
                     <div class="page-content section">
-                        <p><strong>A World Without the Coin</strong><br>
+                        <p><strong></strong><br>
                         With the first USDTittiesCoin buried, chaos returned to the realms. The Middle Lands saw countless wars over wealth, and the underrealm fractured into warring factions, each fighting to control what was left. The once-mighty Cleavagi vanished, their great cities falling into dust. Even the legendary Twin Peaks of Plenty became nothing more than a forgotten myth.</p>
                         <img src="photo7.png" alt="Chaos Returns">
                     </div>
@@ -525,6 +568,18 @@
             <source src="torch.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        
+        <!-- Music control button -->
+        <button id="music-control" class="music-control">▶</button>
+        
+        <!-- Audio element -->
+        <audio id="background-music" loop>
+            <source src="music.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <!-- Invisible click catcher -->
+        <div id="click-catcher"></div>
     </div>
 
     <script>
@@ -534,7 +589,11 @@
         const prevButton = document.getElementById('prev-page');
         const nextButton = document.getElementById('next-page');
         const homeButton = document.getElementById('home-button');
+        const musicControl = document.getElementById('music-control');
+        const backgroundMusic = document.getElementById('background-music');
+        const clickCatcher = document.getElementById('click-catcher');
         let currentPage = 0;
+        let isMusicPlaying = false;
 
         // Set initial page z-index for proper stacking
         function setInitialZIndex() {
@@ -546,7 +605,6 @@
 
         // Update book state based on current page
         function updateBook() {
-            // Update page flipping
             pages.forEach(page => {
                 const pageNumber = parseInt(page.getAttribute('data-page'));
                 if (pageNumber < currentPage) {
@@ -556,16 +614,46 @@
                 }
             });
 
-            // Adjust book angle for depth perception
             const angle = -30 + (currentPage * 5);
             book.style.transform = `rotateY(${angle}deg)`;
 
-            // Update button states
             prevButton.disabled = currentPage === 0;
             nextButton.disabled = currentPage === pages.length - 1;
         }
 
+        // Toggle music play/pause
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                musicControl.textContent = '▶';
+                isMusicPlaying = false;
+            } else {
+                backgroundMusic.play().catch(error => {
+                    console.log('Playback failed:', error);
+                });
+                musicControl.textContent = '❚❚';
+                isMusicPlaying = true;
+            }
+        }
+
+        // Start music on first click and remove catcher
+        function startMusic() {
+            if (!isMusicPlaying) {
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    musicControl.textContent = '❚❚';
+                }).catch(error => {
+                    console.log('Autoplay blocked:', error);
+                });
+            }
+            clickCatcher.remove();
+        }
+
         // Event listeners
+        clickCatcher.addEventListener('click', () => {
+            startMusic();
+        });
+
         prevButton.addEventListener('click', () => {
             if (currentPage > 0) {
                 currentPage--;
@@ -581,8 +669,12 @@
         });
 
         homeButton.addEventListener('click', () => {
-            currentPage = 0; // Reset to cover page
+            currentPage = 0;
             updateBook();
+        });
+
+        musicControl.addEventListener('click', () => {
+            toggleMusic();
         });
 
         // Initialize book
